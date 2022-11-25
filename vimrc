@@ -4,7 +4,7 @@ let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
-set backspace=2
+
 set number
 syntax on 
 colorscheme hybrid
@@ -65,6 +65,14 @@ Plug 'preservim/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
+Plug 'junegunn/fzf.vim'
+Plug 'brooth/far.vim'
+" 需要安装 https://docs.ctags.io/en/latest/ 依赖
+Plug 'preservim/tagbar'
+
+
+
 
 call plug#end()
 
@@ -81,7 +89,24 @@ let NERDTreeIgnore=[
 	\ ]
 
 
+
+" ctrlp 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore={
+	\ 'dir': '\v[\/]\.(git|hg|svn)$',
+	\ 'file': '\v\.(exe|so|dll|swp|pyc|pyo)$'
+	\}
+let g:ctrlp_user_command='ag %s -l --nocolor --hidden -g ""'
+if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor
+	let g:ctrlp_user_command='ag %s -l --nocolor -f -g ""'
+else 
+	let g:ctrlp_user_command=['.git','cd %s && git ls-files . -co --exclude-standard','find %s -type f']
+endif
+
 " easymotion 映射
 nmap ss <Plug>(easymotion-s2)
+let g:far#enable_undo=1
 
-
+" tagbar 
+nnoremap <leader>t :TagbarToggle<CR>
