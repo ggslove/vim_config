@@ -70,7 +70,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'brooth/far.vim'
 " 需要安装 https://docs.ctags.io/en/latest/ 依赖
 Plug 'preservim/tagbar'
-
+Plug 'lfv89/vim-interestingwords'
 
 
 
