@@ -1,5 +1,10 @@
 " 使用 ln -s $(pwd)/vim" r" c ~/.vimrc
-" 编辑vimrc时，可以使用: source ~/.vimrc 来查看配置后状态 
+" 编辑vimrc时，可以使用: source ~/.vimrc 来查看配置后状态
+" 使用 kubectl edit 时如果报错，需要将
+" export EDITOR=/usr/bin/vim >> ~/.bashrc
+"
+"
+"
 let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
@@ -84,9 +89,9 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " 查找文件在树中位置
 nnoremap <C-n> :NERDTreeFind<CR>
 
-let NERDTreeIgnore=[
-	\ '\.git$','\.hg$','\.svn$','\.pyc$','\.svn$','\.swp$',
-	\ '\.DS_Store$','\.sass_cache$','__pycache__$'
+let NERDTreeIgnore=[ 
+		       	\ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.swp$',
+	\ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',	
 	\ ]
 
 
@@ -102,6 +107,7 @@ if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor
 	let g:ctrlp_user_command='ag %s -l --nocolor -f -g ""'
 else 
+	" 不知道为啥 cdh-001机器上不能用
 	let g:ctrlp_user_command=['.git','cd %s && git ls-files . -co --exclude-standard','find %s -type f']
 endif
 
