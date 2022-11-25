@@ -7,6 +7,7 @@ let &t_te.="\e[0 q"
 
 set number
 syntax on 
+set background=dark
 colorscheme hybrid
 " 按F2进入粘贴模式
 set pastetoggle=<F2>
