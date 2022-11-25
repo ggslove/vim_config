@@ -1,14 +1,23 @@
-" 使用 ln -s $(pwd)/vim" r" c ~/.vimrc
+" 使用 ln -s "$(pwd)/vim" ~/.vimrc
 " 编辑vimrc时，可以使用: source ~/.vimrc 来查看配置后状态
 " 使用 kubectl edit 时如果报错，需要将
 " export EDITOR=/usr/bin/vim >> ~/.bashrc
-"
-"
-"
+
 let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
+" osx 中键盘 删除出现问题
+set backspace=2 
+
+" 自动缩进
+set ai
+" 4个空格
+set ts=4
+" 将tab转成空格
+set et 
+autocmd FileType yaml setlocal sw=2 ts=2 et ai
+
 
 set number
 syntax on 
@@ -43,8 +52,8 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 " 搜索后按两次 Esc 来取消搜索
 noremap <silent> <Esc><Esc> :let @/=""<CR>
-" noremap <C-p> <C-w>p
-" noremap <C-w> <C-w>w
+noremap <C-p> <C-w>p
+"noremap <C-w> <C-w>w
 " 这几个_ | = 好像不能映射
 " noremap <C-_> <C-w>_
 " noremap <C-|> <C-w>|
@@ -84,32 +93,20 @@ call plug#end()
 
 " --------- NERDTree 配置----------
 nnoremap <leader>n :NERDTreeFocus<CR>
-"nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 " 查找文件在树中位置
 nnoremap <C-n> :NERDTreeFind<CR>
 
-let NERDTreeIgnore=[ 
-		       	\ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.swp$',
-	\ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',	
-	\ ]
+"let NERDTreeIgnore=[ 
+"		       	\ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.swp$',
+"	\ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',	
+"	\ ]
 
 
 
 " ctrlp 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore={
-	\ 'dir': '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(exe|so|dll|swp|pyc|pyo)$'
-	\}
-let g:ctrlp_user_command='ag %s -l --nocolor --hidden -g ""'
-if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor
-	let g:ctrlp_user_command='ag %s -l --nocolor -f -g ""'
-else 
-	" 不知道为啥 cdh-001机器上不能用
-	let g:ctrlp_user_command=['.git','cd %s && git ls-files . -co --exclude-standard','find %s -type f']
-endif
+
 
 " easymotion 映射
 nmap ss <Plug>(easymotion-s2)
@@ -117,3 +114,5 @@ let g:far#enable_undo=1
 
 " tagbar 
 nnoremap <leader>t :TagbarToggle<CR>
+
+" inentLine
