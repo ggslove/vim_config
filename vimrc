@@ -55,7 +55,7 @@ noremap <silent> <Esc><Esc> :let @/=""<CR>
 " 安装插件
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin('~/vim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
