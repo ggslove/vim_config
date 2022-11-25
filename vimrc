@@ -98,15 +98,25 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " 查找文件在树中位置
 nnoremap <C-n> :NERDTreeFind<CR>
 
-"let NERDTreeIgnore=[ 
-"		       	\ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.swp$',
-"	\ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',	
-"	\ ]
-
+let NERDTreeIgnore=[ 
+             \ '\.git$', '\.hg$', '\.svn$', '\.stversions$', '\.pyc$', '\.pyo$', '\.swp$',
+             \ '\.DS_Store$', '\.sass-cache$', '__pycache__$', '\.egg-info$', '\.ropeproject$',
+             \ ]
 
 
 " ctrlp 
-
+set wildignore+=/tmp/,.so,.swp,*.zip
+let g:ctrlp_custom_ignore={
+        \ 'dir': '\v[\/]\.(git|hg|svn)$',
+         \ 'file': '\v\.(exe|so|dll|swp|pyc|pyo)$'
+        \}
+let g:ctrlp_user_command='ag %s -l --nocolor --hidden -g ""'
+ if executable('ag')
+         set grepprg=ag\ --nogroup\ --nocolor
+         let g:ctrlp_user_command='ag %s -l --nocolor -f -g ""'
+ else
+         "let g:ctrlp_user_command=['.git','cd %s && git ls-files . -co --exclude-standard','find %s -type f']
+endif
 
 " easymotion 映射
 nmap ss <Plug>(easymotion-s2)
