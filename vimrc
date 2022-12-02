@@ -41,7 +41,8 @@ inoremap <leader>w <Esc>:w<cr>
 " 使用 jj 在insert 模式退出
 inoremap jj <Esc>
 " <C-d> 来在插入模式删除一行 并且返回insert模式
-inoremap <C-d> <Esc>ddi
+" 不用这个了，这个与 shift left tab  冲突
+" inoremap <C-d> <Esc>ddi
 
 " --------- normal 模式映射 ---------
 
@@ -86,6 +87,7 @@ Plug 'brooth/far.vim'
 " 需要安装 https://docs.ctags.io/en/latest/ 依赖
 Plug 'preservim/tagbar'
 Plug 'lfv89/vim-interestingwords'
+Plug 'rking/ag.vim'
 
 
 
