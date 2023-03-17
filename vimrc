@@ -37,7 +37,7 @@ let mapleader=','
 " ------- insert 模式映射 ---------
 
 " 在插入模式中 按 ,w 保存
-inoremap <leader>w <Esc>:w<cr>
+"inoremap <leader>w <Esc>:w<cr>
 " 使用 jj 在insert 模式退出
 inoremap jj <Esc>
 " <C-d> 来在插入模式删除一行 并且返回insert模式
@@ -128,3 +128,8 @@ let g:far#enable_undo=1
 nnoremap <leader>t :TagbarToggle<CR>
 
 " inentLine
+"
+set cindent "针对c语言自动缩进
+set autoindent " 自动缩进
+" set smarttab " 根据文件中国其他缩进空格来确定一个tab多少个空格
+set ts=4 "设定tab为4个空格
